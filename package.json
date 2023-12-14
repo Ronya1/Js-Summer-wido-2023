@@ -1,0 +1,23 @@
+{
+  "name": "js-summer-wido-2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^8.26.1",
+    "chai": "^4.3.10"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^8.26.1",
+    "@wdio/mocha-framework": "^8.24.12",
+    "@wdio/spec-reporter": "^8.24.12",
+    "wdio-vscode-service": "^5.2.2"
+  }
+}
