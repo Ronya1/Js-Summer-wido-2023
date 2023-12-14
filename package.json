@@ -12,12 +12,15 @@
   "license": "ISC",
   "dependencies": {
     "@wdio/cli": "^8.26.1",
-    "chai": "^4.3.10"
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "webdriverio": "^8.26.1"
   },
   "devDependencies": {
     "@wdio/local-runner": "^8.26.1",
     "@wdio/mocha-framework": "^8.24.12",
     "@wdio/spec-reporter": "^8.24.12",
+    "chromedriver": "^120.0.0",
     "wdio-vscode-service": "^5.2.2"
   }
 }
