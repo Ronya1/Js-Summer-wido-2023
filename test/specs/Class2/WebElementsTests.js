@@ -52,7 +52,7 @@ describe('Verify login form', () => {
         expect(isLoginBtnEnabled, 'Log In button is NOT enabled').to.be.true;
 
         // 3. Click on log In button
-        await loginBtn.click();npx 
+        await loginBtn.click();
 
         await browser.pause(15000);
 
