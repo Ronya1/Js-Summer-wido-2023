@@ -18,7 +18,7 @@
 
 //     // });
 //     //HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-//     before(async () => {
+//     before(async () => {git s
 //         // This code will run once before any test in this describe block
 //         await browser.url('https://www.facebook.com');
 //         // You can add any other setup logic here
@@ -266,7 +266,7 @@ describe('Login', () => {
         console.log(pageTitle);
         console.log('Page title\n');
 
-        expectedPageTitle = 'Facebook – log in or sign up';
+        expectedPageTitle = 'Facebook - log in or sign up';
         expect(pageTitle, 'Facebook title is not as expected').to.equal(expectedPageTitle);
     });
 
@@ -284,4 +284,3 @@ describe('Login', () => {
     //     // Code to run after all tests
     // });
 });
-
