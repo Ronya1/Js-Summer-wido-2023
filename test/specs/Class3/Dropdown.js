@@ -39,8 +39,8 @@ describe('Dropdown tests', () => {
         // 2. Click 'Create New Account' button
         // const createNewAccountBtn = await $('=Create New Account');
         // await createNewAccountBtn.click();
-        await $('=Create New Account').click();
-        await browser.pause(2000);
+        await $('=Create new account').click();
+        await browser.pause(1000);
 
         //  3. Select Jan in month dropdown
         await $('#month').selectByIndex(0);
@@ -51,7 +51,7 @@ describe('Dropdown tests', () => {
         // 5. Select 1990 in year dropdown
         await $('#year').selectByVisibleText('1990');
 
-        await browser.pause(15000);
+        await browser.pause(2000);
 
     });
 });

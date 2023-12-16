@@ -18,7 +18,7 @@ describe('Locator strategies part - 2', () => {
         // 3. Click on log In button
         await loginBtn.click();
 
-        await browser.pause(15000);
+        await browser.pause(2000);
     });
 
     it('Verify copy on login button is "Log In"', async () => {
@@ -58,7 +58,7 @@ describe('Locator strategies part - 2', () => {
        const emailInputBox = await $('input[aria-label*=Email]');
        const copyInEmptyEmailInputBox = await emailInputBox.getAttribute('placeholder');
 
-       expect(copyInEmptyEmailInputBox, 'Text in empty email input box is NOT as expected').to.equal('Email address or phone number');
+       expect(copyInEmptyEmailInputBox, 'Text in empty email input box is NOT as expected').to.equal('Email or phone number');
 
 
     });
@@ -100,7 +100,7 @@ describe('Locator strategies part - 2', () => {
         // 2. Click 'Create New Account' button
         // const createNewAccountBtn = await $('=Create New Account');
         // await createNewAccountBtn.click();
-        await $('=Create New Account').click();
+        await $('=Create new account').click();
 
         await browser.pause(2000);
 
@@ -110,7 +110,7 @@ describe('Locator strategies part - 2', () => {
         expect(isFGenderSelected, 'Female radio button is selected').to.be.false;
 
         // 4. if female button is not selected, click female radio button
-        if (!isFGenderSelected) {
+        if (!isFGenderSelected) { // line 109 returns a true or false - its false so condition states if its not false then select Female. 
             await fRadioButton.click();
         }
 
@@ -121,19 +121,19 @@ describe('Locator strategies part - 2', () => {
     });
 
 
-    it('Testcase on https://www.accuweather.com/', async () => {
-        /**
-         * 1. Launch https://www.accuweather.com/
-         * 2. Verify current temp is between 50 and 60
-         */
-        // 1. Launch https://www.accuweather.com/
-        await browser.url('https://www.accuweather.com/');
+    // it('Testcase on https://www.accuweather.com/', async () => {
+    //     /**
+    //      * 1. Launch https://www.accuweather.com/
+    //      * 2. Verify current temp is between 50 and 60
+    //      */
+    //     // 1. Launch https://www.accuweather.com/
+    //     await browser.url('https://www.accuweather.com/');
 
-        // 2. Verify current temp is between 50 and 60
-        const tempValue = await $('.recent-location-temp').getText();
-        console.log(`\n\nTemp value = ${tempValue}`);
+    //     // 2. Verify current temp is between 50 and 60
+    //     const tempValue = await $('.recent-location-temp').getText();
+    //     console.log(`\n\nTemp value = ${tempValue}`);
 
-    });
+    // });
 
 
 });
