@@ -34,7 +34,7 @@ describe('Verify login form', () => {
         // 5. Verify "abcd@1234" as password
         await pwdInputBox.setValue('abcd@1234');
 
-        await browser.pause(10000);
+        await browser.pause(2000);
     });
 
     it('Verify login button default state', async () => {
