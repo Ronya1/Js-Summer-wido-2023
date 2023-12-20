@@ -21,13 +21,65 @@ describe('Class 3 Homework', () => {
  * Store Hight temp , store low temp and feels like 
  * 
  */
-    // it('Verify feelsLikeTempValue is between lowTempValue and highTempValue', async() => {
-    //     await browser.url('https://weather.com/')
-    //     await browser.pause(3000)
+    it.only('Verify feelsLikeTempValue is between lowTempValue and highTempValue', async() => {
+        await browser.url('https://weather.com/')
+        await browser.pause(20)
+
+        // Locating and verifying the search bar is displayed
+        const searchBarLocator = await $('#LocationSearch_input')
+        const isDearchBarEnabled = await searchBarLocator.isDisplayed()
+        expect(isDearchBarEnabled, "Search Bar Is Not Enabled").to.be.true
+        await browser.pause(20)
+
+        // Clicking the search bar and beginning location search 
+        await searchBarLocator.click()
+        await browser.pause(3000)
+
+        // Typing 10309 and selecting Staten Island from drop down 
+        await searchBarLocator.setValue('10309') // This is working its showing 10309 in the consol, just made my pauses longer 
+        await browser.pause(3000)
+
+        const statenIslandLoactor = await $('button=Staten Island, NY') 
+        clickingSILocator = await statenIslandLoactor.click() // This is working and taking me to the staten Island page 
+        await browser.pause(2000)
+
+        // -> DO AN EXPECT HERE THAT THE PAGE FOR STATEN ISLAND APPEARED. 
+
+       //Scrolling to the max/min/feels like section
+       const maxMinFeelsLikeSection = await $('h2=Weather Today in Staten Island, NY')
+       await maxMinFeelsLikeSection.scrollIntoView()
+       await browser.pause(3000)
+
+       // -> Do an expect here that the text "Weather Today in Staten Island, NY" is displayed 
+
+        // Locating the max, min and feels like Temp. 
+       const feelsLikeTemplocator = await $('span[class=TodayDetailsCard--feelsLikeTempValue--2icPt]')
+       const feelsLikeTemp = await feelsLikeTemplocator.getText()
+       console.log(`THIS IS THE FEELS LIKE TEMP ${feelsLikeTemp}`); // Just testing the feels like temp to get the value and it worked Perfectly!!!!
+       await browser.pause(3000)
+
+       const HighTemplocator = await $('//div[@data-testid="wxData"]//span[@data-testid="TemperatureValue"][1]') // THIS FUCKING WORKED!!!! I just tried it on the first try 
+       const HighTemp = await HighTemplocator.getText()
+       console.log(`THIS IS THE HIGH TEMP ${HighTemp}`); // Just testing the feels like temp to get the value and it worked Perfectly!!!!
+       await browser.pause(3000)
+
+       const lowTemplocator = await $('//div[@data-testid="wxData"]//span[@data-testid="TemperatureValue"][2]') // THIS FUCKING WORKED TOO!!!! 
+       const lowTemp = await lowTemplocator.getText()
+       console.log(`THIS IS THE LOW TEMP ${lowTemp}`); // Just testing the feels like temp to get the value and it worked Perfectly!!!!
+       await browser.pause(3000)
+
+        expect(feelsLikeTemp < HighTemp && feelsLikeTemp > lowTemp, "Feels Like Temp not between High and Low Temp Values").to.be.true 
+        // when I ran the above it gave me an error B/C the Feels Like temp was 23 && High Temp was 46 and low temp was 32. 
 
 
 
-    // });
+
+
+
+
+
+
+    });
 
 
 /**
@@ -104,7 +156,7 @@ describe('Class 3 Homework', () => {
  */
 
 
-    it.only('Verify empty messenger login flow', async () => {
+    it('Verify empty messenger login flow', async () => {
         await browser.url('https://www.facebook.com') // launch facebook 
         await browser.pause(200)
 
