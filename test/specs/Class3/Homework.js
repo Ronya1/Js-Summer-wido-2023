@@ -21,7 +21,7 @@ describe('Class 3 Homework', () => {
  * Store Hight temp , store low temp and feels like 
  * 
  */
-    it.only('Verify feelsLikeTempValue is between lowTempValue and highTempValue', async() => {
+    it('Verify feelsLikeTempValue is between lowTempValue and highTempValue', async() => {
         await browser.url('https://weather.com/')
         await browser.pause(20)
 
@@ -29,7 +29,7 @@ describe('Class 3 Homework', () => {
         const searchBarLocator = await $('#LocationSearch_input')
         const isDearchBarEnabled = await searchBarLocator.isDisplayed()
         expect(isDearchBarEnabled, "Search Bar Is Not Enabled").to.be.true
-        await browser.pause(20)
+        await browser.pause(200)
 
         // Clicking the search bar and beginning location search 
         await searchBarLocator.click()
@@ -41,9 +41,14 @@ describe('Class 3 Homework', () => {
 
         const statenIslandLoactor = await $('button=Staten Island, NY') 
         clickingSILocator = await statenIslandLoactor.click() // This is working and taking me to the staten Island page 
-        await browser.pause(2000)
+        await browser.pause(3000)
 
         // -> DO AN EXPECT HERE THAT THE PAGE FOR STATEN ISLAND APPEARED. 
+        const statenIslandNewPage = await $('h1=Staten Island, NY')
+        const isstatenIslandNewPageDisplayed = await statenIslandNewPage.isDisplayed()
+        expect(isstatenIslandNewPageDisplayed , " Staten Island Page did not open").to.be.true
+        await browser.pause(2000)
+
 
        //Scrolling to the max/min/feels like section
        const maxMinFeelsLikeSection = await $('h2=Weather Today in Staten Island, NY')
@@ -51,6 +56,10 @@ describe('Class 3 Homework', () => {
        await browser.pause(3000)
 
        // -> Do an expect here that the text "Weather Today in Staten Island, NY" is displayed 
+       const weatherInSIBoxLocator = await $('h2=Weather Today in Staten Island, NY')
+       const weatherInSIBoxDisplayed = await weatherInSIBoxLocator.isDisplayed()
+       expect(weatherInSIBoxDisplayed , "Weather Today in SI Box is not displayed").to.be.true
+
 
         // Locating the max, min and feels like Temp. 
        const feelsLikeTemplocator = await $('span[class=TodayDetailsCard--feelsLikeTempValue--2icPt]')
@@ -70,15 +79,6 @@ describe('Class 3 Homework', () => {
 
         expect(feelsLikeTemp < HighTemp && feelsLikeTemp > lowTemp, "Feels Like Temp not between High and Low Temp Values").to.be.true 
         // when I ran the above it gave me an error B/C the Feels Like temp was 23 && High Temp was 46 and low temp was 32. 
-
-
-
-
-
-
-
-
-
     });
 
 
@@ -86,9 +86,49 @@ describe('Class 3 Homework', () => {
  * Tc-2: CANT DO THIS ONE DUE TO DARKSKY NOT BEING ACTIVE ANYMORE
  * https://www.darsky.net
  * Verify user can get temperature based on zipcode
- * 
  */
 
+it.only('Verify user can get temperature based on zipcode', async () => {
+        await browser.url('https://weather.com/')
+        await browser.pause(20)
+
+        // Locating and verifying the search bar is displayed
+        const searchBarLocator = await $('#LocationSearch_input')
+        const isDearchBarEnabled = await searchBarLocator.isDisplayed()
+        expect(isDearchBarEnabled, "Search Bar Is Not Enabled").to.be.true
+        await browser.pause(200)
+
+        // Clicking the search bar and beginning location search 
+        await searchBarLocator.click()
+        await browser.pause(3000)
+
+        // Typing 10309 and selecting Staten Island from drop down 
+        await searchBarLocator.setValue('10309') // This is working its showing 10309 in the consol, just made my pauses longer 
+        await browser.pause(3000)
+
+        const statenIslandLoactor = await $('button=Staten Island, NY') 
+        clickingSILocator = await statenIslandLoactor.click() // This is working and taking me to the staten Island page 
+        await browser.pause(3000)
+
+        // -> DO AN EXPECT HERE THAT THE PAGE FOR STATEN ISLAND APPEARED. 
+        const statenIslandNewPage = await $('h1=Staten Island, NY')
+        const isstatenIslandNewPageDisplayed = await statenIslandNewPage.isDisplayed()
+        expect(isstatenIslandNewPageDisplayed , " Staten Island Page did not open").to.be.true
+        await browser.pause(2000)
+
+        const StatenIslandWeatherLocator = await $('//div[@class="Card--content--1GQMr CurrentConditions--content--3w3sk"]//span[@data-testid="TemperatureValue"][2]')
+        const isStatenIslandWeatherLocatorDisplayed = await StatenIslandWeatherLocator.isDisplayed()
+        expect(isStatenIslandWeatherLocatorDisplayed, "SI Weather Is Showing").to.be.true
+        await browser.pause(2000)
+
+        // Checking the weather value in staten island 
+        const siCurrnetWeather = await $('//div[@class="Card--content--1GQMr CurrentConditions--content--3w3sk"]//span[@data-testid="TemperatureValue"][2]').getText()
+        console.log(`This is the Staten Island Weather Now ${siCurrnetWeather}`);
+
+
+
+    
+});
 
 
 /**
