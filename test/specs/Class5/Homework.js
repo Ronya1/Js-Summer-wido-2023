@@ -62,15 +62,27 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
             await browser.pause(3000);
 
             //Selecting the dates - THIS IS NOT WORKING 
-            const allDecDates2 = await $$('//span[text()="December 2023"]/following-sibling::table//tbody');
-                for (const dateSelected of allDecDates2){
-                    const date = await dateSelected.getAttribute('data-day');
-                    if(date.localeCompare('28') === 0){
-                        await dateSelected.click();
-                        break;
-                    }
-                }
-                await browser.pause(2000)
+            // const allDecDates2 = await $$('//span[text()="December 2023"]/following-sibling::table//tbody');
+            //     for (const dateSelected of allDecDates2){
+            //         const date = await dateSelected.getAttribute('data-day');
+            //         if(date.localeCompare('28') === 0){
+            //             await dateSelected.click();
+            //             break;
+            //         }
+            //     }
+            //     await browser.pause(2000)
+
+            const tabledataCallocator = await $('//button[@data-stid="uitk-date-selector-input1-default"]')
+            await tabledataCallocator.click()
+            await browser.pause(2000)
+
+            const dec23Dates = await $(`//table[@aria-label="December 2023"]//tbody//tr[5]//td[5]`)
+            await dec23Dates.click()
+            await browser.pause(2000)
+
+            const jan24Dates = await $(`//table[@aria-label="January 2024"]//tbody//tr[3]//td[2]`)
+            await jan24Dates.click()
+            await browser.pause(5000)
 
 
 
