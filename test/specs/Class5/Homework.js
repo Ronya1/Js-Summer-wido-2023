@@ -19,8 +19,8 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
  * 1. Launch hotels.com
  * 2. Type "man" in destination
  * 3. Select "Manila" from auto-suggestion
- * 
  * 4. Select Aug 20 to Sep-5 as check-in and check-out respectively
+ * 
  * 5. Click Search button
  * 6. Verify destination has Manila
  * 7. Verify check-in date in Aug-20
@@ -57,9 +57,9 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
             const firstItem = $('li[data-index="0"]');
             await firstItem.waitForExist();
             await firstItem.click();
-            await browser.pause(3000)
+            await browser.pause(1000)
 
-            await browser.pause(3000);
+            await browser.pause(1000);
 
             //Selecting the dates - THIS IS NOT WORKING 
             // const allDecDates2 = await $$('//span[text()="December 2023"]/following-sibling::table//tbody');
@@ -74,15 +74,37 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
 
             const tabledataCallocator = await $('//button[@data-stid="uitk-date-selector-input1-default"]')
             await tabledataCallocator.click()
-            await browser.pause(2000)
+            await browser.pause(1000)
 
             const dec23Dates = await $(`//table[@aria-label="December 2023"]//tbody//tr[5]//td[5]`)
             await dec23Dates.click()
-            await browser.pause(2000)
+            await browser.pause(1000)
 
             const jan24Dates = await $(`//table[@aria-label="January 2024"]//tbody//tr[3]//td[2]`)
             await jan24Dates.click()
-            await browser.pause(5000)
+            await browser.pause(1000)
+
+            const doneButtonOnDate = await $('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/section[1]/form[1]/div[1]/div[1]/div[2]/div[1]/section[1]/footer[1]/div[1]/button[1]')
+            await doneButtonOnDate.scrollIntoView()
+            await browser.pause(1000)
+            await doneButtonOnDate.click()
+            await browser.pause(1000)
+
+            const searchButtonLocator = await $(`//button[@id='search_button']`)
+            await searchButtonLocator.click()
+            await browser.pause(4000)
+
+            const locationButtonAfterSearch = await $(`//button[contains(text(),'Manila, National Capital Region, Philippines')]`)
+            const locationInsearchBar = await locationButtonAfterSearch.getText()
+            const locationInsearchBarUpper = await locationInsearchBar.toUpperCase()
+            await browser.pause(2000)
+            console.log(`this is the new text ${locationInsearchBarUpper}`); //this worked 
+
+            // NOW I NEED TO VERIFY THE TEXT CONTAINS Manila
+            const doesSearchIncludeTerm = locationInsearchBarUpper.includes('MANILA')
+            console.log(`this is the new text 2 ${doesSearchIncludeTerm}`); //this worked 
+
+
 
 
 
