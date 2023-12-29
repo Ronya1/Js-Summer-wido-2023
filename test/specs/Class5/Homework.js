@@ -1,4 +1,4 @@
-
+// YOU REALLY FUCKED UP THIS CODE!!!! 
 const { describe } = require("mocha");
 const { expect } = require("chai");// Due - Aug 19 (Friday eod)
 
@@ -8,9 +8,6 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
  * Get all the timeline data in an array
  * then print array in the console.
  */
-
-
-
 
 
 /**
@@ -45,8 +42,6 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
             await browser.pause(2000)
 
            // Take the drop down and get all elements then run a loop if === "Manila" then click it. 
-            // -> Just chropath suggestion -> Manila path //body/div[@id='app-blossom-flex-ui']/div[@id='app-layer-manager']/div[@id='app-layer-base']/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/section[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[2]/div[1]/ul[1]/li[7]/div[1]/div[1]/button[1]
-            // -> My finding -> //button[@aria-label="Manila National Capital Region, Philippines"]
 
             // Wait for the dropdown to appear then select Manila. 
             const dropdown = await $('ul[data-stid="destination_form_field-results"]');
@@ -60,17 +55,6 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
             await browser.pause(1000)
 
             await browser.pause(1000);
-
-            //Selecting the dates - THIS IS NOT WORKING 
-            // const allDecDates2 = await $$('//span[text()="December 2023"]/following-sibling::table//tbody');
-            //     for (const dateSelected of allDecDates2){
-            //         const date = await dateSelected.getAttribute('data-day');
-            //         if(date.localeCompare('28') === 0){
-            //             await dateSelected.click();
-            //             break;
-            //         }
-            //     }
-            //     await browser.pause(2000)
 
             const tabledataCallocator = await $('//button[@data-stid="uitk-date-selector-input1-default"]')
             await tabledataCallocator.click()
@@ -103,11 +87,18 @@ const { expect } = require("chai");// Due - Aug 19 (Friday eod)
             // NOW I NEED TO VERIFY THE TEXT CONTAINS Manila
             const doesSearchIncludeTerm = locationInsearchBarUpper.includes('MANILA')
             console.log(`this is the new text 2 ${doesSearchIncludeTerm}`); //this worked 
+            expect(doesSearchIncludeTerm, 'Search page does not contain Manila').to.be.true
 
+            // finish this code by verifying the dates selected. 
+            await tabledataCallocator.click()
+            await browser.pause(1000)
 
+            const dateOnSearchPage = await $(`//button[@data-stid="uitk-date-selector-input1-default"]`)
+            const isDateonPageSelected = await dateOnSearchPage.isEnabled()
+            console.log(`This is it ${isDateonPageSelected}`);
 
 
 
         });
-        
+ 
     });
