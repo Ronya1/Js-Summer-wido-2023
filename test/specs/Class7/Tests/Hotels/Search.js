@@ -13,7 +13,8 @@ describe('Search Feature', () => {
          * 3. Select "Manila" from auto-suggestion
          * 4. Select Sep10 to Sep-25 as check-in and check-out respectively
          * 5. Click Search button
-         * 6. Verify destination has Manila
+         * 6. Verify destination has Manilagit branch 
+         * 
          * 7. Verify check-in date in Sep-10
          * 8. Verify check-out date in Sep-25
          * 
